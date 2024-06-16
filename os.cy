@@ -49,3 +49,15 @@ test.assert(os.readFile('temp.txt') == 'hello cyber')
 -- remove file
 --
 os.removeFile('temp.txt')
+
+-- execCmd
+--
+var cmd = List.fill('', 2)
+cmd[0] = 'cat'
+cmd[1] = '/etc/hostname'
+var res = os.execCmd(cmd)
+test.assert( res['exited'] == 0 )
+var hostname = res['out']
+test.assert(res['err'] == '')
+
+print "HOSTNAME : $(hostname)"
